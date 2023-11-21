@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>zhen | zhen</title><meta name="author" content="Irwin Edith,ediiiiii.021@gmail.com"><meta name="copyright" content="Irwin Edith"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="STM32学习笔记[0]单片机一种集成电路芯片：CPU、SRAM（静态随机内存）、FLASH硬盘、主板 STM32 原理图内容（STM32F103RCT6)学会查看数据手册 ！P3-STM32引脚（逆时针）   电源引脚 V字母开头    晶振引脚 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;370681786   复位引脚 https:&#x2F;&#x2F;blog.csdn.net&#x2F;chenhua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zhen">
+<meta property="og:url" content="https://irwin-edith.github.io/2023/11/21/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0[0]/index.html">
+<meta property="og:site_name" content="zhen">
+<meta property="og:description" content="STM32学习笔记[0]单片机一种集成电路芯片：CPU、SRAM（静态随机内存）、FLASH硬盘、主板 STM32 原理图内容（STM32F103RCT6)学会查看数据手册 ！P3-STM32引脚（逆时针）   电源引脚 V字母开头    晶振引脚 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;370681786   复位引脚 https:&#x2F;&#x2F;blog.csdn.net&#x2F;chenhua">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/11/20/x7FhN4I1KuASEWy.png">
+<meta property="article:published_time" content="2023-11-21T02:30:26.530Z">
+<meta property="article:modified_time" content="2023-11-21T02:33:17.444Z">
+<meta property="article:author" content="Irwin Edith">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/11/20/x7FhN4I1KuASEWy.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://irwin-edith.github.io/2023/11/21/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0[0]/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'zhen',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-21 10:33:17'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.ibb.co/b6wJ0YN/pib.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/11/20/x7FhN4I1KuASEWy.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhen"><span class="site-name">zhen</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-21T02:30:26.530Z" title="发表于 2023-11-21 10:30:26">2023-11-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-21T02:33:17.444Z" title="更新于 2023-11-21 10:33:17">2023-11-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="STM32学习笔记-0"><a href="#STM32学习笔记-0" class="headerlink" title="STM32学习笔记[0]"></a>STM32学习笔记[0]</h1><h1 id="单片机"><a href="#单片机" class="headerlink" title="单片机"></a>单片机</h1><p>一种集成电路芯片：CPU、SRAM（静态随机内存）、FLASH硬盘、主板</p>
+<h1 id="STM32-原理图内容（STM32F103RCT6"><a href="#STM32-原理图内容（STM32F103RCT6" class="headerlink" title="STM32 原理图内容（STM32F103RCT6)"></a>STM32 原理图内容（STM32F103RCT6)</h1><h2 id="学会查看数据手册"><a href="#学会查看数据手册" class="headerlink" title="学会查看数据手册"></a>学会查看数据手册</h2><p><img src="/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5B0%5D/Untitled.png" alt="Untitled"></p>
+<h3 id="！P3-STM32引脚（逆时针）"><a href="#！P3-STM32引脚（逆时针）" class="headerlink" title="！P3-STM32引脚（逆时针）"></a>！P3-STM32引脚（逆时针）</h3><table>
+<thead>
+<tr>
+<th>电源引脚</th>
+<th>V字母开头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>晶振引脚</td>
+<td><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/370681786">https://zhuanlan.zhihu.com/p/370681786</a></td>
+</tr>
+<tr>
+<td>复位引脚</td>
+<td><a target="_blank" rel="noopener" href="https://blog.csdn.net/chenhuanqiangnihao/article/details/113356913">https://blog.csdn.net/chenhuanqiangnihao/article/details/113356913</a></td>
+</tr>
+<tr>
+<td>下载引脚</td>
+<td>详见29.4.1（SWD）</td>
+</tr>
+<tr>
+<td>BOOT引脚</td>
+<td>F1里有BOOT0、BOOT1（PB2）</td>
+</tr>
+<tr>
+<td>GPIO引脚</td>
+<td>P字母开头</td>
+</tr>
+</tbody></table>
+<p>![Untitled](STM32学习笔记[0]&#x2F;Untitled 1.png)</p>
+<p>JTAG：提供仿真、调试、下载；但占用的IO口过多；</p>
+<p><strong>SWD：提供仿真、调试、下载；（推荐）</strong></p>
+<p>串口：只能下载，不能调试</p>
+<p>![Untitled](STM32学习笔记[0]&#x2F;Untitled 2.png)</p>
+<h3 id="电气特性"><a href="#电气特性" class="headerlink" title="电气特性"></a>电气特性</h3><aside>
+💡 5.2 绝对最大额定值（英文版更准）
+
+</aside>
+
+<h2 id="最小系统：保证MCU正常工作的最小电路组成单元"><a href="#最小系统：保证MCU正常工作的最小电路组成单元" class="headerlink" title="最小系统：保证MCU正常工作的最小电路组成单元"></a>最小系统：保证MCU正常工作的最小电路组成单元</h2><p>除</p>
+<ol>
+<li><p>STM32（集成电路）板外，还需要</p>
+</li>
+<li><p>电源电路</p>
+<ol>
+<li>VDD&#x2F;VSS数电电源正（VDD）负（VSS）引脚；</li>
+<li>VDDA&#x2F;VSSA模电电源正&#x2F;负引脚；</li>
+<li>VBAT：RTC&amp;后备区域供电引脚；</li>
+</ol>
+</li>
+<li><p>晶振电路</p>
+<ol>
+<li>OSC_IN&#x2F;OSC_OUT外部高速晶振引脚-系统<ol>
+<li>8MHZ</li>
+</ol>
+</li>
+<li>OSC32_IN&#x2F;OSC32_OUT外部低速晶振引脚-RTC<ol>
+<li>32.768KHZ</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>复位电路</p>
+<ol>
+<li>NRST（低电平复位）<ol>
+<li>上电复位</li>
+<li>复位按键复位</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>BOOT启动电路</p>
+<ol>
+<li>BOOT0、BOOT1；</li>
+</ol>
+</li>
+<li><p>下载调试电路</p>
+<ol>
+<li>SWCLK&#x2F;SWDIO:SWD调试引脚</li>
+</ol>
+<p> ![Untitled](STM32学习笔记[0]&#x2F;Untitled 3.png)</p>
+</li>
+</ol>
+<h2 id="IO分配"><a href="#IO分配" class="headerlink" title="IO分配"></a>IO分配</h2><p>优先分配特定外设IO,然后分配通用IO,然后微调。</p>
+<h1 id="下载安装开发环境"><a href="#下载安装开发环境" class="headerlink" title="下载安装开发环境"></a>下载安装开发环境</h1><p>CH340 USB虚拟串口驱动</p>
+<p>USB做虚拟串口的作用：</p>
+<ol>
+<li>USB口当串口来使用</li>
+<li>如果USB连接的是串口1，那么USB口还可以当作串口来下载程序。</li>
+<li>供电</li>
+</ol>
+<h2 id="标准库工程模板创建"><a href="#标准库工程模板创建" class="headerlink" title="标准库工程模板创建"></a>标准库工程模板创建</h2><p>![Untitled](STM32学习笔记[0]&#x2F;Untitled 4.png)</p>
+<ol>
+<li>Startup文件夹文件选择：大容量单片机选择hd.s(…),小容量选择xl.s（具体看文档）；</li>
+<li>System文件夹</li>
+</ol>
+<p>![Untitled](STM32学习笔记[0]&#x2F;Untitled 5.png)</p>
+<ol>
+<li>Library文件夹，inc是.h文件，src是.c文件</li>
+<li>Public文件夹：main.c文件和公用头文件（.h)；</li>
+</ol>
+<p>![Untitled](STM32学习笔记[0]&#x2F;Untitled 6.png)</p>
+<h2 id="STM32工程模板操作环境配置"><a href="#STM32工程模板操作环境配置" class="headerlink" title="STM32工程模板操作环境配置"></a>STM32工程模板操作环境配置</h2><ol>
+<li><p>产生HEX固件（INTEL HEX),<code>hex</code>是用于文件格式是<code>intel</code>规定的标准，总体来说，<code>hex</code>是文本文件，经常在微控制器的固件开发中看到<code>hex</code>的身影，例如基于<code>STM32F103</code>硬件，使用<code>MDK</code>开发的话，该软件就可以生成<code>hex</code>文件；如下图所示；(其实就是串口下载时所需的文件）</p>
+<p>但使用仿真器或其他情况时，建议先别勾选上，因为会使编译速度变慢。</p>
+</li>
+</ol>
+<p>![Untitled](STM32学习笔记[0]&#x2F;Untitled 7.png)</p>
+<p>常见问题：</p>
+<p>![Untitled](STM32学习笔记[0]&#x2F;Untitled 8.png)</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://irwin-edith.github.io">Irwin Edith</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://irwin-edith.github.io/2023/11/21/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0[0]/">https://irwin-edith.github.io/2023/11/21/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0[0]/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://irwin-edith.github.io" target="_blank">zhen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/11/20/x7FhN4I1KuASEWy.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s2.loli.net/2023/11/20/3kx9ih5eqRuGXWL.jpg" target="_blank"><img class="post-qr-code-img" src="https://s2.loli.net/2023/11/20/3kx9ih5eqRuGXWL.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://s2.loli.net/2023/11/20/lfOFvukNc6XqoWn.jpg" target="_blank"><img class="post-qr-code-img" src="https://s2.loli.net/2023/11/20/lfOFvukNc6XqoWn.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2023/11/21/32Learning/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5B0%5D%205cfc15687c9e4bc8b60f905901ee56eb/" title=""><img class="cover" src="https://s2.loli.net/2023/11/20/M3Smea1xfrE5LXV.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.ibb.co/b6wJ0YN/pib.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Irwin Edith</div><div class="author-info__description">Study!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Irwin-Edith" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/ediiiiii.021@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-0"><span class="toc-number">1.</span> <span class="toc-text">STM32学习笔记[0]</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">单片机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32-%E5%8E%9F%E7%90%86%E5%9B%BE%E5%86%85%E5%AE%B9%EF%BC%88STM32F103RCT6"><span class="toc-number">3.</span> <span class="toc-text">STM32 原理图内容（STM32F103RCT6)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%BC%9A%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C"><span class="toc-number">3.1.</span> <span class="toc-text">学会查看数据手册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%81P3-STM32%E5%BC%95%E8%84%9A%EF%BC%88%E9%80%86%E6%97%B6%E9%92%88%EF%BC%89"><span class="toc-number">3.1.1.</span> <span class="toc-text">！P3-STM32引脚（逆时针）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E6%B0%94%E7%89%B9%E6%80%A7"><span class="toc-number">3.1.2.</span> <span class="toc-text">电气特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%BF%9D%E8%AF%81MCU%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%9C%80%E5%B0%8F%E7%94%B5%E8%B7%AF%E7%BB%84%E6%88%90%E5%8D%95%E5%85%83"><span class="toc-number">3.2.</span> <span class="toc-text">最小系统：保证MCU正常工作的最小电路组成单元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E5%88%86%E9%85%8D"><span class="toc-number">3.3.</span> <span class="toc-text">IO分配</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">4.</span> <span class="toc-text">下载安装开发环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E5%BA%93%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA"><span class="toc-number">4.1.</span> <span class="toc-text">标准库工程模板创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">STM32工程模板操作环境配置</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/11/21/32Learning/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5B0%5D%205cfc15687c9e4bc8b60f905901ee56eb/" title="无题"><img src="https://s2.loli.net/2023/11/20/M3Smea1xfrE5LXV.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2023/11/21/32Learning/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5B0%5D%205cfc15687c9e4bc8b60f905901ee56eb/" title="无题">无题</a><time datetime="2023-11-21T02:30:26.530Z" title="发表于 2023-11-21 10:30:26">2023-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/21/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5B0%5D/" title="无题"><img src="https://s2.loli.net/2023/11/20/x7FhN4I1KuASEWy.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2023/11/21/STM32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5B0%5D/" title="无题">无题</a><time datetime="2023-11-21T02:30:26.530Z" title="发表于 2023-11-21 10:30:26">2023-11-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Irwin Edith</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const abcjsInit = () => {
+    const abcjsFn = () => {
+      document.querySelectorAll(".abc-music-sheet").forEach(ele => {
+        ABCJS.renderAbc(ele, ele.innerHTML, {responsive: 'resize'})
+      })
+    }
+    
+    typeof ABCJS === 'object' ? abcjsFn()
+      : getScript('https://cdn.jsdelivr.net/npm/abcjs/dist/abcjs-basic-min.min.js').then(abcjsFn)
+  }
+
+  window.pjax ? abcjsInit() : window.addEventListener('load', abcjsInit)
+})()</script></div><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="ask,and,question" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
